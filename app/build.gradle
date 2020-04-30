@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
 
 android {
     compileSdkVersion 29
@@ -6,8 +7,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.deneme"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -20,13 +21,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning', 'HardcodedText', 'InvalidPackage'
+        textReport true
+        textOutput "stdout"
+    }
 
+}
+protobuf {
+    protoc { artifact = 'com.google.protobuf:protoc:3.11.0' }
+    plugins {
+        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.28.0' // CURRENT_GRPC_VERSION
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java { option 'lite' }
+            }
+            task.plugins {
+                grpc { // Options added to --grpc_out
+                    option 'lite' }
+            }
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -36,4 +60,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+<<<<<<< HEAD
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+=======
+    implementation 'io.grpc:grpc-okhttp:1.28.0' // CURRENT_GRPC_VERSION
+    implementation 'io.grpc:grpc-protobuf-lite:1.28.0' // CURRENT_GRPC_VERSION
+    implementation 'io.grpc:grpc-stub:1.28.0' // CURRENT_GRPC_VERSION
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+>>>>>>> 10413a1ea3d3ce3e1add590a966bf264b77fdd6a
 }

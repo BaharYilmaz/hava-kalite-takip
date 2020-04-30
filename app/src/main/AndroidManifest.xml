@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.deneme">
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!--yüksek doğruluk-->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!--düşük doğruluk-->
-<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-<uses-permission android:name="android.permission."/>
 
-<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /><!--yüksek doğruluk-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!--düşük doğruluk-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_cloud_queue_black_24dp"
@@ -14,6 +17,18 @@
         android:roundIcon="@drawable/ic_cloud_queue_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.deneme"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

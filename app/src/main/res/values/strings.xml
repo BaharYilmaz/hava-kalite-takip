@@ -13,6 +13,7 @@
     <string name="title_location_permission">Konum</string>
     <string name="text_location_permission">Konuma erişime izin ver</string>
     <string name="ok">İzin ver</string>
+    <string name="title_activity_maps">Hava Kalite Takip Uygulaması</string>
 
     <string name="home_second">Home Second</string>
 </resources>

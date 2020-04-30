@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineer"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/et_location" />
+
+        <Button
+            android:text="Ara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/maps_custom_button"
+            android:id="@+id/btn_Go"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lineer"
+            >
+            <Button
+                android:text="Uydu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/btn_Sat"
+                android:background="@drawable/maps_custom_button"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="5dp"
+                android:layout_alignParentLeft="true" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAdres"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:text="Adresi Onayla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/maps_custom_button"
+            android:id="@+id/btnOnayla"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+<!--    <ZoomControls-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/zoom"-->
+<!--        android:layout_alignParentRight="true"></ZoomControls>-->
+
+<!--    tools:context="com.example.hasibezafer.googlemapsapp.MapsActivity"-->
