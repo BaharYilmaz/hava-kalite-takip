@@ -5,15 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.air_quality.AirQualityFragment">
-  <?xml version="1.0" encoding="utf-8"?>
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:weightSum="1">
+    android:weightSum="1"
+tools:context=".ui.air_quality.AirQualityFragment">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,19 +19,18 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_margin="20dp"
+          android:layout_margin="15dp"
           android:textAlignment="center"
           android:fontFamily="sans-serif-light"
           android:text="Bulunduğunuz konumun hava kalitesi bilgisini almak için tıklayınız"
-          android:textSize="20sp"
+          android:textSize="17sp"
           android:gravity="center_horizontal" />
 
       <Button
           android:id="@+id/btnHavaKalite"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="40dp"
-          android:textSize="15sp"
+          android:layout_marginTop="30dp"
           android:textColor="@color/colorWhite"
           android:padding="10dp"
           android:background="@drawable/custom_button"
@@ -45,49 +38,84 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llSonuc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:gravity="center"
+        android:layout_margin="15dp"
         android:orientation="vertical">
 
-      <TextView
-          android:id="@+id/txtHavaSonuc"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textSize="20sp"
-          android:fontFamily="sans-serif-light"
-          android:text="Sonuç burda gözükcek" />
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="enlem"/>
-    <TextView
-        android:id="@+id/txtEnlem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="boylam"/>
-    <TextView
-        android:id="@+id/txtBoylam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/txtSehir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnKonumBul"
-        android:text="Konum bul"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Güncel Konumunuz : " />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_border"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-  </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txtSehir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif-light"
+
+                    />
+                <Button
+                    android:id="@+id/btnKonumKaydet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:background="@drawable/custom_button2"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Kaydet"
+
+                    />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:background="@drawable/custom_border"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
+            <TextView
+                android:id="@+id/txtHavaSonuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_dark"
+                android:fontFamily="sans-serif-light"
+                android:text="Sonuç burda gözükcek" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

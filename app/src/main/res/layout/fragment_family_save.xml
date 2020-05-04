@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Sevdiklerinizin yaşadığı şehirlerdeki hava kalitesini sürekli takip edebilmek için aile üyesi ekleyin."
+        android:textStyle="italic" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Bir aile üyesi ismi giriniz : "
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_border"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textSize="17sp"
+
+            />
+
+        <TextView
+            android:id="@+id/txtNameInvalid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Lütfen isim giriniz !"
+            android:textColor="@color/colorRed" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.6"
+                android:fontFamily="sans-serif-light"
+                android:text="İl seçiniz : "
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/spnCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custom_button"
+            android:padding="10dp"
+            android:text="Kişi ekle"
+            android:textColor="@color/colorWhite" />
+
+</LinearLayout>
+
+</LinearLayout>
+
+
+    <!--<EditText-->
+    <!--android:id="@+id/etPlace"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="konum"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/txtPlaceName"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="No Place selected"-->
+    <!--android:textSize="20dp"/>-->
+

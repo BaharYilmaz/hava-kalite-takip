@@ -20,37 +20,14 @@
             android:layout_margin="20dp"
             android:textAlignment="center"
             android:fontFamily="sans-serif-light"
-            android:text="Bulunduğunuz konumun hava kalitesi bilgisini almak için tıklayınız"
+            android:text="anasayfa"
             android:textSize="20sp"
             android:gravity="center_horizontal" />
 
-        <Button
-            android:id="@+id/btnHavaKalite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textSize="15sp"
-            android:textColor="@color/colorWhite"
-            android:padding="10dp"
-            android:background="@drawable/custom_button"
-            android:text="Hava Kalitesi Bilgisi Al" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.5"
-        android:gravity="center"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtHavaSonuc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-light"
-            android:text="Sonuç burda gözükcek" />
-    </LinearLayout>
 
 
 </LinearLayout>

@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.deneme.R;
+import com.example.deneme.ui.map.MapsFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +35,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class RaporFragment extends Fragment {
     ImageView imgUpload;
-    Button btnUpload, btnConfirm;
+    Button btnUpload, btnConfirm,btnGoMap;
     EditText etAd, etMail;
     TextView txtMailInvalid, txtNameInvalid, txtPhotoInvalid, txtAdres;
 
@@ -80,6 +81,16 @@ public class RaporFragment extends Fragment {
                 }
             }
         });
+        btnGoMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapsFragment mapsFragment = new MapsFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.nav_host_fragment, mapsFragment)
+                        .commit();
+            }
+        });
         return root;
     }
 
@@ -93,12 +104,14 @@ public class RaporFragment extends Fragment {
         txtAdres = root.findViewById(R.id.txtAdres);
         etAd = root.findViewById(R.id.etAd);
         etMail = root.findViewById(R.id.etMail);
+        btnGoMap = root.findViewById(R.id.btnGoMap);
 
         etAd.addTextChangedListener(formTextWatcher);
         etMail.addTextChangedListener(formTextWatcher);
         txtMailInvalid.setVisibility(View.GONE);
         txtNameInvalid.setVisibility(View.GONE);
         txtPhotoInvalid.setVisibility(View.GONE);
+        txtAdres.setVisibility(View.GONE);
 
 
     }
@@ -210,6 +223,7 @@ public class RaporFragment extends Fragment {
         if(bundle != null) {
             String adress = bundle.getString("key");
             txtAdres.setText(adress);
+            txtAdres.setVisibility(View.VISIBLE);
         }
     }
 }

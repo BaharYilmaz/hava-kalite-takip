@@ -3,6 +3,7 @@
    
     <color name="colorAccent">#03DAC5</color>
     <color name="colorBlue">#03A9F4</color>
+    <color name="colorDarkBlue">#0E7FD9</color>
     <color name="colorLightBlue">#82CDEF</color>
     <color name="colorRed">#F44336</color>
     <color name="colorWhite">#FEFFFF</color>

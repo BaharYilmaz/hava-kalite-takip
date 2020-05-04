@@ -8,21 +8,26 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
+
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_air_quality"
             android:icon="@drawable/ic_visibility_black_24dp"
             android:title="@string/menu_air_quality" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_info_outline_black_24dp"
-            android:title="@string/menu_tips" />
-        <item
-            android:id="@+id/nav_maps"
-            android:icon="@drawable/ic_info_outline_black_24dp"
-            android:title="maps" />
-        <item
             android:id="@+id/nav_rapor"
-            android:icon="@drawable/ic_info_outline_black_24dp"
-            android:title="rapor" />
+            android:icon="@drawable/ic_report_black_24dp"
+            android:title="Temiz bir hava için..." />
+<!--        <item-->
+<!--            android:id="@+id/nav_rapor"-->
+<!--            android:icon="@drawable/ic_report_black_24dp"-->
+<!--            android:title="rapor" />-->
+        <item
+            android:id="@+id/nav_family"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="aile" />
+<!--        <item-->
+<!--            android:id="@+id/nav_family_save"-->
+<!--            android:icon="@drawable/ic_info_outline_black_24dp"-->
+<!--            android:title="aile ekle" />-->
     </group>
 </menu>

@@ -1,15 +1,21 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:orientation="vertical"
         android:weightSum="1">
-
 
         <TextView
             android:layout_width="match_parent"
@@ -19,18 +25,19 @@
             android:gravity="center_horizontal"
             android:text="Bulunduğunuz bölgede hava kirliliğine neden olan işletmeler veya durumlar varsa aşağıdaki formu doldurarak rapor edebilirsiniz"
             android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
             android:textStyle="italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="İsminizi giriniz :" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -58,6 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="Mail Adresinizi giriniz :" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -79,12 +87,32 @@
                 android:textColor="@color/colorRed"
                 android:text="Lütfen geçerli bir mail adresi giriniz !"
                 />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Bildirilecek Bölgenin Adresi / Konumu :" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Bildirilecek Bölgenin Adresi / Konumu :" />
+                <Button
+                    android:id="@+id/btnGoMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/custom_button2"
+                    android:textSize="10sp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:text="Haritaya Git"/>
+            </LinearLayout>
+
+
+
 
             <TextView
                 android:id="@+id/txtAdres"
@@ -100,6 +128,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
                 android:text="İlgili işletmenin / bölgenin fotoğrafını yükleyiniz :" />
             <TextView
                 android:id="@+id/txtPhotoInvalid"
@@ -125,25 +155,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/maps_custom_button"
-                android:padding="10dp"
+                android:background="@drawable/custom_button2"
+                android:padding="5dp"
                 android:text="Fotoğraf Ekle"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
-
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/btnConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/maps_custom_button"
+                android:background="@drawable/custom_button"
                 android:padding="10dp"
                 android:text="Formu Onayla ve Gönder"
-                android:textColor="@color/colorWhite" />
-
-
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="70dp"/>
 
 
         </LinearLayout>
@@ -151,3 +179,4 @@
 
     </LinearLayout>
 </ScrollView>
+</LinearLayout>

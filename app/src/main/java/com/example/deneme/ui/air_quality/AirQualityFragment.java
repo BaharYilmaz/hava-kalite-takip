@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,16 +34,21 @@ import java.util.Locale;
 
 public class AirQualityFragment extends Fragment implements LocationListener {
     TextView txtBoylam,txtSehir,txtEnlem;
-    Button btnKonumBul;
+    Button btnHavaKalite,btnKonumKaydet;
+    LinearLayout llSonuc;
     LocationManager locationManager;
     String provider;
+    View root;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
+
     private AirQualityViewModel slideshowViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        slideshowViewModel =
 //                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_air_quality, container, false);
+         root = inflater.inflate(R.layout.fragment_air_quality, container, false);
         // final TextView textView = root.findViewById(R.id.text_slideshow);
 //        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -50,14 +56,13 @@ public class AirQualityFragment extends Fragment implements LocationListener {
 //                //    textView.setText(s);
 //            }
 //        });
-        txtBoylam = root.findViewById(R.id.txtBoylam);
-        txtEnlem = root.findViewById(R.id.txtEnlem);
-        btnKonumBul = root.findViewById(R.id.btnKonumBul);
-        txtSehir = root.findViewById(R.id.txtSehir);
+        init();
+        llSonuc.setVisibility(View.INVISIBLE);
 
-        btnKonumBul.setOnClickListener(new View.OnClickListener() {
+        btnHavaKalite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);                //Toast.makeText(getActivity(), "disable provider", Toast.LENGTH_SHORT).show();
@@ -65,7 +70,7 @@ public class AirQualityFragment extends Fragment implements LocationListener {
                 locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
                 Criteria criteria = new Criteria();
                 provider = locationManager.getBestProvider(criteria, false);
-               // provider = locationManager.GPS_PROVIDER(5000, 10,LO);
+               // provider = locationManager.GPS_PROVIDER(5000,10,locationListener);
                 if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) !=
                         PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
@@ -75,10 +80,17 @@ public class AirQualityFragment extends Fragment implements LocationListener {
                 if (location != null) {
                     onLocationChanged(location);
                 } else {
-                    txtEnlem.setText("not available");
-                    txtBoylam.setText("not available");
+//                    txtEnlem.setText("not available");
+//                    txtBoylam.setText("not available");
                 }
+                llSonuc.setVisibility(View.VISIBLE);
 
+            }
+        });
+        btnKonumKaydet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //konum kayıt
             }
         });
 
@@ -87,19 +99,15 @@ public class AirQualityFragment extends Fragment implements LocationListener {
 
     }
 
+    private void init() {
+//        txtBoylam = root.findViewById(R.id.txtBoylam);
+//        txtEnlem = root.findViewById(R.id.txtEnlem);
+        btnHavaKalite = root.findViewById(R.id.btnHavaKalite);
+        btnKonumKaydet = root.findViewById(R.id.btnKonumKaydet);
+        txtSehir = root.findViewById(R.id.txtSehir);
+        llSonuc = root.findViewById(R.id.llSonuc);
 
-//    @Override
-//    //uyg çalışmaya devam ederken
-//    public void onResume() {
-//        super.onResume();
-//
-//        //belli aralıklarla lokasyon al
-//        // ???
-//        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        locationManager.requestLocationUpdates(provider, 400, 1, this);
-//    }
+    }
 
 
     @Override
@@ -115,8 +123,8 @@ public class AirQualityFragment extends Fragment implements LocationListener {
     public void onLocationChanged(Location location) {
         double lat = location.getLatitude();
         double log = location.getLongitude();
-        txtEnlem.setText(String.valueOf(lat));
-        txtBoylam.setText(String.valueOf(log));
+     //   txtEnlem.setText(String.valueOf(((float) lat)));
+     //  txtBoylam.setText(String.valueOf(log));
         //get city name
         String cityName=null;
         Geocoder gcd =new Geocoder(getActivity(), Locale.getDefault());
@@ -128,7 +136,9 @@ public class AirQualityFragment extends Fragment implements LocationListener {
               String country =adres.get(0).getCountryName();
               String city =adres.get(0).getAdminArea();
               String district =adres.get(0).getSubAdminArea();
-                cityName=country+" "+city+" "+district;
+                cityName=country+" "+city+"/"+district+"\n"+"("+(float) lat+" - "+(float) log+")";
+               // getAirQuality(lat,log);
+
             }
 
 
@@ -137,6 +147,9 @@ public class AirQualityFragment extends Fragment implements LocationListener {
             e.printStackTrace();
         }
         txtSehir.setText(String.valueOf(cityName));
+    }
+
+    private void getAirQuality(double lat, double location) {
     }
 
     public void getLocation(View view) {
@@ -168,7 +181,6 @@ public class AirQualityFragment extends Fragment implements LocationListener {
         Toast.makeText(getActivity(),"disable provider",Toast.LENGTH_SHORT).show();
 
     }
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(),

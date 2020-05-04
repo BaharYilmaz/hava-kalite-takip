@@ -1,6 +1,11 @@
 package com.example.deneme;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -13,12 +18,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.deneme.ui.rapor.RaporFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity  implements FragmentInterface  {
+public class MainActivity extends AppCompatActivity   {
     FragmentManager fragmentManager;
     Context context=this;
+
+    Notification myNotification;
+    NotificationManager nManager;
+    final String myBlog = "http://www.google.com";
+    static final int NOTIFICATION_ID = 1;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -34,14 +43,14 @@ public class MainActivity extends AppCompatActivity  implements FragmentInterfac
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_maps,R.id.nav_rapor)
+                R.id.nav_home,R.id.nav_maps,R.id.nav_air_quality,R.id.nav_family)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
+        creataNotifications();
 
     }
 
@@ -60,20 +69,21 @@ public class MainActivity extends AppCompatActivity  implements FragmentInterfac
     }
 
 
-    @Override
-    public void sendData(String data) {
-//        Bundle bundle = new Bundle();
-//        bundle.putString("key","adres burda görüncek"); // Put anything what you want
+    public void creataNotifications(){
+        Intent intent = new Intent(context, MainActivity.class);
 
-        RaporFragment fragment2 = new RaporFragment();
-        //fragment2.setArguments(bundle);
+        @SuppressLint("WrongConstant") PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,0);//neresi açılacak
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.nav_host_fragment, fragment2)
-                .commit();
+        myNotification = new Notification.Builder(context)
+                .setContentTitle("Android")
+                .setContentText("Android için text metni")
+                .setWhen(System.currentTimeMillis())//sistem saati
+                .setContentIntent(pendingIntent)
+                .setDefaults(Notification.DEFAULT_SOUND)
+                .setAutoCancel(true)//tıklandığında bildirim silinir
+                .setSmallIcon(R.drawable.ic_cloud_queue_white_80dp).build();//kapalı uygulamayı açmak için
+
+        nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.notify(NOTIFICATION_ID, myNotification);
     }
-
-
-
 }

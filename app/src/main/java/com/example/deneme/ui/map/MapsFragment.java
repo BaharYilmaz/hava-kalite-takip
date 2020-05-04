@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.deneme.FragmentInterface;
 import com.example.deneme.R;
 import com.example.deneme.ui.rapor.RaporFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +35,6 @@ import java.util.Locale;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
-    FragmentInterface fragmentInterface;
     GoogleMap mMap;
     MapView mMapView;
     TextView txtAdres;

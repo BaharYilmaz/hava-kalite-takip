@@ -3,6 +3,7 @@
 
 <item
     android:drawable="@drawable/custom_button"
+    android:state_selected="true"
     />
     <item
         android:drawable="@drawable/custom_button_pressed"
