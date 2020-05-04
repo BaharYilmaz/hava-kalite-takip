@@ -1,5 +1,8 @@
 package com.example.deneme.ui.family;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,8 +79,8 @@ public class FamilySaveFragment extends Fragment  {
                         familyList=returnList;
                     }
                     familyList.add(family);
-
                     setSharedPref(familyList);
+                    setAlertDialog(getActivity());
 
                 }
                 else{
@@ -107,21 +110,39 @@ public class FamilySaveFragment extends Fragment  {
         return root;
     }
 
+    private void setAlertDialog(Context context) {
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
+        alertDialog
+                .setMessage("Kişi başarıyla eklendi.")
+                .setCancelable(false)
+                .setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FamilyFragment familyFragment = new FamilyFragment();
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.nav_host_fragment, familyFragment)
+                                .commit();
+                    }
+
+                }).show();
+    }
+
     private void setSharedPref(List<Family> familyList) {
 
-        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family File",MODE_PRIVATE);
+        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family",MODE_PRIVATE);
         SharedPreferences.Editor editor = shared_preferences.edit();
         Gson gson = new Gson();
         String jsonSet = gson.toJson(familyList);
-        editor.putString("key_family", jsonSet);
+        editor.putString("key", jsonSet);
         editor.commit();
 
     }
     private List<Family> getSharedPref() {
 
-        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family File",MODE_PRIVATE);
+        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family",MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = shared_preferences.getString("key_family", "");
+        String json = shared_preferences.getString("key", "");
         List<Family> familyGet = gson.fromJson(json,new TypeToken<ArrayList<Family>>(){}.getType());
         return familyGet;
 

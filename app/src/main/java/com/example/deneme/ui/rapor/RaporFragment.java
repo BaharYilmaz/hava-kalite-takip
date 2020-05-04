@@ -19,11 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.deneme.MainActivity;
 import com.example.deneme.R;
 import com.example.deneme.ui.map.MapsFragment;
 
@@ -37,12 +37,14 @@ public class RaporFragment extends Fragment {
     ImageView imgUpload;
     Button btnUpload, btnConfirm,btnGoMap;
     EditText etAd, etMail;
-    TextView txtMailInvalid, txtNameInvalid, txtPhotoInvalid, txtAdres;
+    TextView txtMailInvalid, txtNameInvalid, txtPhotoInvalid, txtAdres,txtAddressInvalid;
 
     static final int SELECT_IMAGE = 12;
     static final int TAKE_IMAGE = 5;
     String isim;
     String mail;
+    String adres;
+
     View root;
    Context context = null;
 
@@ -56,7 +58,6 @@ public class RaporFragment extends Fragment {
         init();
         setAddress();
 
-
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,13 +69,16 @@ public class RaporFragment extends Fragment {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (imgUpload.getDrawable() != null && !isim.isEmpty() && !mail.isEmpty()) {
+                adres=txtAdres.getText().toString();
+                if (imgUpload.getDrawable() != null && !isim.isEmpty() && !mail.isEmpty() && !adres.isEmpty()) {
                     txtPhotoInvalid.setVisibility(View.GONE);
-
-                    Toast.makeText(getActivity(), "okay", Toast.LENGTH_LONG).show();
+                    txtAddressInvalid.setVisibility(View.GONE);
+                    setAlertDialogSuccess(getActivity());
 
                 } else {
+
                     txtMailInvalid.setVisibility(View.VISIBLE);
+                    txtAddressInvalid.setVisibility(View.VISIBLE);
                     txtNameInvalid.setVisibility(View.VISIBLE);
                     txtPhotoInvalid.setVisibility(View.VISIBLE);
 
@@ -101,6 +105,7 @@ public class RaporFragment extends Fragment {
         txtMailInvalid = root.findViewById(R.id.txtMailInvalid);
         txtNameInvalid = root.findViewById(R.id.txtNameInvalid);
         txtPhotoInvalid = root.findViewById(R.id.txtPhotoInvalid);
+        txtAddressInvalid = root.findViewById(R.id.txtAddressInvalid);
         txtAdres = root.findViewById(R.id.txtAdres);
         etAd = root.findViewById(R.id.etAd);
         etMail = root.findViewById(R.id.etMail);
@@ -110,6 +115,7 @@ public class RaporFragment extends Fragment {
         etMail.addTextChangedListener(formTextWatcher);
         txtMailInvalid.setVisibility(View.GONE);
         txtNameInvalid.setVisibility(View.GONE);
+        txtAddressInvalid.setVisibility(View.GONE);
         txtPhotoInvalid.setVisibility(View.GONE);
         txtAdres.setVisibility(View.GONE);
 
@@ -225,5 +231,20 @@ public class RaporFragment extends Fragment {
             txtAdres.setText(adress);
             txtAdres.setVisibility(View.VISIBLE);
         }
+    }
+    private void setAlertDialogSuccess(Context context) {
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
+        alertDialog
+                .setMessage("Rapor başarıyla gönderildi.")
+                .setCancelable(false)
+                .setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent=new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                    }
+
+                }).show();
     }
 }

@@ -63,18 +63,21 @@ public class FamilyFragment extends Fragment {
 
     private void fillArrayList(ArrayList<Family> _familyList) {
         List<Family> familyList= getSharedPref();
-        for (Family family : familyList) {
-            _familyList.add(family);
+        if(familyList!=null){
+            for (Family family : familyList) {
+                _familyList.add(family);
+            }
         }
+
 
     }
 
 
     private List<Family> getSharedPref() {
 
-        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family File", MODE_PRIVATE);
+        SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = shared_preferences.getString("key_family", "");
+        String json = shared_preferences.getString("key", "");
         List<Family> familyGet = gson.fromJson(json, new TypeToken<ArrayList<Family>>() {
         }.getType());
         return familyGet;

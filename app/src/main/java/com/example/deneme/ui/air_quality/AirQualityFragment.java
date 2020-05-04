@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -26,10 +27,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.deneme.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class AirQualityFragment extends Fragment implements LocationListener {
@@ -91,6 +96,17 @@ public class AirQualityFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
                 //konum kayıt
+                ArrayList<Double> loc =new ArrayList<>();
+                loc.add(lat);
+                loc.add(log);
+
+                SharedPreferences shared_preferences = getActivity().getSharedPreferences("Location",MODE_PRIVATE);
+                SharedPreferences.Editor editor = shared_preferences.edit();
+                Gson gson = new Gson();
+                String jsonSet = gson.toJson(loc);
+                editor.putString("keyLoc", jsonSet);
+                editor.commit();
+                Toast.makeText(getActivity(), "Konum kaydedildi !", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,8 +116,7 @@ public class AirQualityFragment extends Fragment implements LocationListener {
     }
 
     private void init() {
-//        txtBoylam = root.findViewById(R.id.txtBoylam);
-//        txtEnlem = root.findViewById(R.id.txtEnlem);
+
         btnHavaKalite = root.findViewById(R.id.btnHavaKalite);
         btnKonumKaydet = root.findViewById(R.id.btnKonumKaydet);
         txtSehir = root.findViewById(R.id.txtSehir);
@@ -118,13 +133,13 @@ public class AirQualityFragment extends Fragment implements LocationListener {
         }
         locationManager.removeUpdates(this);
     }
-
+    double log;
+    double lat;
     @Override
     public void onLocationChanged(Location location) {
-        double lat = location.getLatitude();
-        double log = location.getLongitude();
-     //   txtEnlem.setText(String.valueOf(((float) lat)));
-     //  txtBoylam.setText(String.valueOf(log));
+         lat = location.getLatitude();
+         log = location.getLongitude();
+
         //get city name
         String cityName=null;
         Geocoder gcd =new Geocoder(getActivity(), Locale.getDefault());
