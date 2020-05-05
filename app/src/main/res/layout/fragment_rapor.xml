@@ -5,185 +5,186 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:gravity="center_horizontal"
-            android:text="Bulunduğunuz bölgede hava kirliliğine neden olan işletmeler veya durumlar varsa aşağıdaki formu doldurarak rapor edebilirsiniz"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif-light"
-            android:textStyle="italic" />
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="25dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:text="Bulunduğunuz bölgede hava kirliliğine neden olan işletmeler veya durumlar varsa aşağıdaki formu doldurarak rapor edebilirsiniz"
+                android:textAlignment="center"
+                android:textStyle="italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Bildirilecek Bölgenin Adresi / Konumu :" />
+
+                    <Button
+                        android:id="@+id/btnGoMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/custom_button2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Haritaya Git"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAdres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_border"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/txtAddressInvalid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Lütfen haritadan adres seçiniz !"
+                    android:textColor="@color/colorRed" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:fontFamily="sans-serif-light"
-                    android:text="Bildirilecek Bölgenin Adresi / Konumu :" />
+                    android:text="İsminizi giriniz :" />
 
-                <Button
-                    android:id="@+id/btnGoMap"
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="text"
+                    android:padding="10dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/txtNameInvalid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:text="Lütfen isminizi giriniz !"
+                    android:textColor="@color/colorRed" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Mail Adresinizi giriniz :" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/txtMailInvalid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Lütfen geçerli bir mail adresi giriniz !"
+                    android:textColor="@color/colorRed" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="İlgili işletmenin / bölgenin fotoğrafını yükleyiniz :" />
+
+                <TextView
+                    android:id="@+id/txtPhotoInvalid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Lütfen bir fotoğraf yükleyiniz !"
+                    android:textColor="@color/colorRed" />
+
+                <ImageView
+                    android:id="@+id/imgUpload"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_insert_photo_gray_48dp"
+                     />
+
+
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_button2"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="Haritaya Git"
+                    android:padding="5dp"
+                    android:text="Fotoğraf Ekle"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btnConfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="70dp"
+                    android:background="@drawable/custom_button"
+                    android:padding="10dp"
+                    android:text="Formu Onayla ve Gönder"
+                    android:textColor="@color/colorWhite" />
+
+
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtAdres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/custom_border"
-                android:padding="10dp" />
-            <TextView
-                android:id="@+id/txtAddressInvalid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/colorRed"
-                android:text="Lütfen haritadan adres seçiniz !"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="İsminizi giriniz :" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etAd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/custom_border"
-                android:inputType="text"
-                android:padding="10dp"
-
-                />
-
-            <TextView
-                android:id="@+id/txtNameInvalid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Lütfen isminizi giriniz !"
-                android:textColor="@color/colorRed" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Mail Adresinizi giriniz :" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etMail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/custom_border"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-
-                />
-
-            <TextView
-                android:id="@+id/txtMailInvalid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Lütfen geçerli bir mail adresi giriniz !"
-                android:textColor="@color/colorRed" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-light"
-                android:text="İlgili işletmenin / bölgenin fotoğrafını yükleyiniz :" />
-
-            <TextView
-                android:id="@+id/txtPhotoInvalid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Lütfen bir fotoğraf yükleyiniz !"
-                android:textColor="@color/colorRed" />
-
-            <ImageView
-                android:id="@+id/imgUpload"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:background="@drawable/ic_insert_photo_gray_48dp"
-                android:scaleType="centerCrop" />
-
-
-            <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/custom_button2"
-                android:padding="5dp"
-                android:text="Fotoğraf Ekle"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/btnConfirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="70dp"
-                android:background="@drawable/custom_button"
-                android:padding="10dp"
-                android:text="Formu Onayla ve Gönder"
-                android:textColor="@color/colorWhite" />
 
 
         </LinearLayout>
-
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 </LinearLayout>

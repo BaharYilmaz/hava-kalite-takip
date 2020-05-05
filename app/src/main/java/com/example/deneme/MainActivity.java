@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity   {
 
     Notification myNotification;
     NotificationManager nManager;
-    final String myBlog = "http://www.google.com";
     static final int NOTIFICATION_ID = 1;
 
     private AppBarConfiguration mAppBarConfiguration;

@@ -7,25 +7,53 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.5"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:src="@drawable/city"
+           android:foreground="#80244E53"
+           android:background="@android:color/transparent"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif-light"
-            android:text="anasayfa"
-            android:textSize="20sp"
-            android:gravity="center_horizontal" />
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HAVA KALİTE TAKİP SİSTEMİ"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/colorWhite"
+                />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bulunduğunuz şehirdeki hava kalitesini anlık olarak takip edin..."
+                android:gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                android:layout_margin="20dp"
+                android:textColor="@color/colorWhite"
+                />
+
+        </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
