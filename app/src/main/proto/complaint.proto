@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.deneme";
+option java_outer_classname = "ComplaintProto";
+option objc_class_prefix = "HLW";
+
+package Complaint;
+
+service ComplaintService {
+  rpc CreateComplaint(newComplaint) returns (result) {}
+ 
+}
+
+message newComplaint {
+  string name =1;
+  string email = 2;
+  string imageUrl = 3;
+  string adress = 4;
+  
+}
+message result {
+  string status = 1;
+}
