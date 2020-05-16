@@ -1,0 +1,8 @@
+{
+    "env" :{
+        "MONGO_ATLAS_PW" : "924884Pp",
+        "JWT_KEY":"MTS239926",
+        "AQI_TOKEN" : "4028c7dbaf14512070dff99cfffe7af4d44969d3"
+    }
+
+}
