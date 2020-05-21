@@ -9,7 +9,7 @@ router.get('/:cityName', (req, res, next) => {
         axios.get('http://api.waqi.info/feed/' + cityName + '/?token=' + process.env.AQI_TOKEN).then(result => {
             console.log("hava kalite indexi"+         result.data.data.aqi)
             res.status(200).json({
-                result : result.data.data.aqi
+                result : result.data.data
             })
         }).catch(err => {
             res.status(500).json({

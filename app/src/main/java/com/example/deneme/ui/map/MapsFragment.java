@@ -152,7 +152,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 }
                 adres = addresses[0].get(0).getAddressLine(0);
                 txtAdres.setText("Adres : " +adres);
-                //Toast.makeText(getActivity(), "Adres: " + adres, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Adres: " + adres, Toast.LENGTH_SHORT).show();
             }
         });
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

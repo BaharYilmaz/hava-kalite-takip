@@ -103,13 +103,14 @@ tools:context=".ui.air_quality.AirQualityFragment">
             android:background="@drawable/custom_border"
             android:orientation="vertical"
             android:layout_margin="15dp">
+
             <TextView
                 android:id="@+id/txtHavaSonuc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_dark"
                 android:fontFamily="sans-serif-light"
-                android:text="Sonuç burda gözükcek" />
+                android:text="Sonuç burda gözükcek"
+                android:textColor="@android:color/holo_blue_dark" />
         </LinearLayout>
 
 

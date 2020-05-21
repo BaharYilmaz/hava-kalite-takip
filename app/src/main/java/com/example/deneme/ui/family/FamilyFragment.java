@@ -1,7 +1,9 @@
 package com.example.deneme.ui.family;
 
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +13,19 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.deneme.JSONParser;
 import com.example.deneme.R;
 import com.example.deneme.model.User.CustomAdapter;
 import com.example.deneme.model.User.Family;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +47,12 @@ public class FamilyFragment extends Fragment {
 
         init();
         initializeAdapter();
-        fillArrayList(families);
+        try {
+            fillArrayList(families);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         btnPersonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,15 +75,78 @@ public class FamilyFragment extends Fragment {
         listAile.setAdapter(listViewAdapter);
     }
 
-    private void fillArrayList(ArrayList<Family> _familyList) {
+    private void fillArrayList(ArrayList<Family> _familyList) throws Exception {
+        GetData gd;
+
         List<Family> familyList= getSharedPref();
-        if(familyList!=null){
+        if(familyList!=null) {
             for (Family family : familyList) {
+                gd = new GetData();
+                family.setIndex(gd.execute(family.getCity().toString()).get());
+
+                // family.setIndex("gd.execute(family.getCity().toString()).get())");
+
                 _familyList.add(family);
+
+
             }
         }
 
 
+    }
+    /*
+    public static String getdata(String cityName)
+    {
+        String json = null;
+        String ResponseCode="-1";
+        JSONParser jParser = new JSONParser();
+        String FinalURL = "http://10.0.2.2:4242/airqualityindex/"+cityName;
+        Log.i("***", FinalURL);
+        try {
+            json = jParser.getJSONFromUrl(FinalURL).getJSONObject("result").getString("aqi");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }*/
+    public class GetData extends AsyncTask<String, Void, String> {
+        String ResponseMessage = "";
+        String json;
+        String host;
+        String port;
+        String message;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String ResponseCode="-1";
+            JSONParser jParser = new JSONParser();
+            String FinalURL = "http://10.0.2.2:4242/airqualityindex/"+strings[0];
+            Log.i("***", FinalURL);
+            try {
+                json = jParser.getJSONFromUrl(FinalURL).getJSONObject("result").getString("aqi");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return json;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            host = "10.0.2.2";
+            port = "4242";
+            //
+            //message = "airqualityindex/"+city;
+            message = "airqualityindex/konya";
+        }
+
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            return;
+        }
     }
 
 
@@ -88,8 +165,6 @@ public class FamilyFragment extends Fragment {
     private void init() {
         btnPersonAdd = root.findViewById(R.id.btnPersonAdd);
         listAile = root.findViewById(R.id.listAile);
-
-
     }
 
 }

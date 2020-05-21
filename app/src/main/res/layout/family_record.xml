@@ -31,13 +31,14 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:text="Age"/>
+
             <TextView
                 android:id="@+id/record_air_quality"
-                android:fontFamily="serif"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Position"/>
+                android:fontFamily="serif"
+                android:text="-" />
         </LinearLayout>
 
 

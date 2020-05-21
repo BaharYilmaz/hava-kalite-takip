@@ -1,5 +1,6 @@
 package com.example.deneme.ui.rapor;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,9 +8,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -23,12 +26,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.deneme.ComplaintServiceGrpc;
 import com.example.deneme.MainActivity;
 import com.example.deneme.R;
+import com.example.deneme.newComplaint;
+import com.example.deneme.result;
 import com.example.deneme.ui.map.MapsFragment;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
+
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.ref.WeakReference;
+import java.util.concurrent.TimeUnit;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -38,7 +55,8 @@ public class RaporFragment extends Fragment {
     Button btnUpload, btnConfirm,btnGoMap;
     EditText etAd, etMail;
     TextView txtMailInvalid, txtNameInvalid, txtPhotoInvalid, txtAdres,txtAddressInvalid;
-
+   // FirebaseStorage storage;
+   // StorageReference storageReference;
     static final int SELECT_IMAGE = 12;
     static final int TAKE_IMAGE = 5;
     String isim;
@@ -73,7 +91,9 @@ public class RaporFragment extends Fragment {
                 if (imgUpload.getDrawable() != null && !isim.isEmpty() && !mail.isEmpty() && !adres.isEmpty()) {
                     txtPhotoInvalid.setVisibility(View.GONE);
                     txtAddressInvalid.setVisibility(View.GONE);
-                    setAlertDialogSuccess(getActivity());
+                    //***************************
+
+
 
                 } else {
 
@@ -83,6 +103,16 @@ public class RaporFragment extends Fragment {
                     txtPhotoInvalid.setVisibility(View.VISIBLE);
 
                 }
+
+                new GrpcTask(getActivity()).execute(
+                        "10.0.2.2",
+
+                        "",
+                        "50052"
+
+
+                );
+                setAlertDialogSuccess(getActivity());
             }
         });
         btnGoMap.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +148,9 @@ public class RaporFragment extends Fragment {
         txtAddressInvalid.setVisibility(View.GONE);
         txtPhotoInvalid.setVisibility(View.GONE);
         txtAdres.setVisibility(View.GONE);
+
+       // storage = FirebaseStorage.getInstance();
+        //storageReference = storage.getReference();
 
 
     }
@@ -228,7 +261,7 @@ public class RaporFragment extends Fragment {
 
         if(bundle != null) {
             String adress = bundle.getString("key");
-            txtAdres.setText(adress);
+            txtAdres.setText("deneme" + adress);
             txtAdres.setVisibility(View.VISIBLE);
         }
     }
@@ -247,4 +280,73 @@ public class RaporFragment extends Fragment {
 
                 }).show();
     }
+
+    private static class GrpcTask extends AsyncTask<String, Void, String> {
+        private final WeakReference<Activity> activityReference;
+
+        private ManagedChannel channel;
+        private JSONArray jsonObject;
+        private GrpcTask(Activity activity) {
+            this.activityReference = new WeakReference<Activity>(activity);
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String host = params[0];
+            String message = params[1];
+            String portStr = params[2];
+            int port = TextUtils.isEmpty(portStr) ? 0 : Integer.valueOf(portStr);
+            try {
+                channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+                ComplaintServiceGrpc.ComplaintServiceBlockingStub stub = ComplaintServiceGrpc.newBlockingStub(channel);
+                newComplaint request = newComplaint.newBuilder().setAdress("client deneme123").setEmail("clientdeneme@hoymail.com")
+                        .setImageUrl("www.clientdeneme.com")
+                        .setName("mustafa taha soydan")
+
+                        .build();
+                result reply = stub.createComplaint(request);
+                return reply.getStatus();
+
+
+            } catch (Exception e) {
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                pw.flush();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            Activity activity = activityReference.get();
+            if (activity == null) {
+                return;
+            }
+
+
+            TextView resultText = (TextView) activity.findViewById(R.id.grpc_response_text);
+            resultText.setText(result);
+
+
+/*
+      Gson gson = new Gson();
+      String jsonProduct = gson.toJson(result);
+      System.out.println("jsonProducts = " + jsonProduct);
+      */
+
+
+
+
+
+        }
+    }
+
 }
+

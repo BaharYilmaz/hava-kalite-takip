@@ -39,7 +39,7 @@ public class FamilySaveFragment extends Fragment  {
     EditText etAd;
     View root;
     Spinner spinner;
-    String isim,sehir;
+    String isim,sehir,index;
 
     int REQUEST_CODE = 1;
 
@@ -65,13 +65,14 @@ public class FamilySaveFragment extends Fragment  {
                isim=etAd.getText().toString();
                sehir=spinner.getSelectedItem().toString();
 
+
                 if(!isim.isEmpty())
                 {
                     txtNameInvalid.setVisibility(View.GONE);
                     etAd.setBackgroundResource(R.drawable.custom_border);
                     //kaydetme işlemi
                     List<Family> familyList = new ArrayList<>();//
-                    Family family=new Family(isim,sehir);
+                    Family family=new Family(isim,sehir,index);
 
                     List<Family> returnList=getSharedPref();
 
@@ -131,11 +132,13 @@ public class FamilySaveFragment extends Fragment  {
     private void setSharedPref(List<Family> familyList) {
 
         SharedPreferences shared_preferences = getActivity().getSharedPreferences("Family",MODE_PRIVATE);
+
         SharedPreferences.Editor editor = shared_preferences.edit();
         Gson gson = new Gson();
         String jsonSet = gson.toJson(familyList);
         editor.putString("key", jsonSet);
         editor.commit();
+
 
     }
     private List<Family> getSharedPref() {

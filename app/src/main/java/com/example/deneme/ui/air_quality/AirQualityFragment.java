@@ -12,7 +12,9 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +28,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.deneme.JSONParser;
 import com.example.deneme.R;
+import com.example.deneme.getData;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,12 +45,14 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class AirQualityFragment extends Fragment implements LocationListener {
-    TextView txtBoylam,txtSehir,txtEnlem;
+    TextView txtBoylam,txtSehir,txtEnlem,txtHavaSonuc;
     Button btnHavaKalite,btnKonumKaydet;
     LinearLayout llSonuc;
     LocationManager locationManager;
     String provider;
     View root;
+    String city = "konya";
+    private GetData gd;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
 
@@ -89,6 +98,10 @@ public class AirQualityFragment extends Fragment implements LocationListener {
 //                    txtBoylam.setText("not available");
                 }
                 llSonuc.setVisibility(View.VISIBLE);
+               // gd = new getData();
+                //txtHavaSonuc.setText(gd.getAirQualityIndex("mersin").toString());
+                gd = new GetData();
+                gd.execute();
 
             }
         });
@@ -114,6 +127,43 @@ public class AirQualityFragment extends Fragment implements LocationListener {
         return root;
 
     }
+    public class GetData extends AsyncTask<Void, Void, String> {
+        String ResponseMessage = "";
+        String json;
+        String host;
+        String port;
+        String message;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            host = "10.0.2.2";
+            port = "4242";
+            //
+            //message = "airqualityindex/"+city;
+            message = "airqualityindex/konya";
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String ResponseCode="-1";
+            JSONParser jParser = new JSONParser();
+            String FinalURL = "http://"+host+":"+port+"/"+message;
+            Log.i("***", FinalURL);
+            try {
+                json = jParser.getJSONFromUrl(FinalURL).getJSONObject("result").getString("aqi");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return ResponseCode;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+          txtHavaSonuc.setText("Bulundugunuz şehrin hava kalitesi " +json.toString());
+        }
+    }
 
     private void init() {
 
@@ -121,6 +171,7 @@ public class AirQualityFragment extends Fragment implements LocationListener {
         btnKonumKaydet = root.findViewById(R.id.btnKonumKaydet);
         txtSehir = root.findViewById(R.id.txtSehir);
         llSonuc = root.findViewById(R.id.llSonuc);
+        txtHavaSonuc = root.findViewById(R.id.txtHavaSonuc);
 
     }
 
@@ -149,10 +200,11 @@ public class AirQualityFragment extends Fragment implements LocationListener {
             if (adres.size()>0)
             {
               String country =adres.get(0).getCountryName();
-              String city =adres.get(0).getAdminArea();
+               city =adres.get(0).getAdminArea();
               String district =adres.get(0).getSubAdminArea();
                 cityName=country+" "+city+"/"+district+"\n"+"("+(float) lat+" - "+(float) log+")";
                // getAirQuality(lat,log);
+                // city referans alınacak
 
             }
 
@@ -162,6 +214,10 @@ public class AirQualityFragment extends Fragment implements LocationListener {
             e.printStackTrace();
         }
         txtSehir.setText(String.valueOf(cityName));
+
+
+
+
     }
 
     private void getAirQuality(double lat, double location) {
