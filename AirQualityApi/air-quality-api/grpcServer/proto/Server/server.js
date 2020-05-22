@@ -14,11 +14,6 @@ var packageDefinition = protoLoader.loadSync(
         oneofs: true
     });
 var complaint_proto = grpc.loadPackageDefinition(packageDefinition).Complaint;
-
-
-
-
-
 function CreateComplaint(call,callback){
     const complaint = new Complaint({
         _id: mongoose.Types.ObjectId(),
@@ -39,7 +34,7 @@ function CreateComplaint(call,callback){
 function main() {
     mongoose.connect('mongodb+srv://mts:924884Pp@mts-gpqz8.gcp.mongodb.net/test?retryWrites=true&w=majority',
         { useNewUrlParser: true, useUnifiedTopology: true }
-    );//Mongoose bağlantısını verdiğiniz connet metodu
+    )
     var server = new grpc.Server();
     console.log("girdi");
     server.addService(complaint_proto.ComplaintService.service,

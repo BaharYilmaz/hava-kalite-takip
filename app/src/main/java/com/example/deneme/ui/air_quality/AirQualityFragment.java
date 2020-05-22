@@ -202,8 +202,10 @@ public class AirQualityFragment extends Fragment implements LocationListener {
               String country =adres.get(0).getCountryName();
                city =adres.get(0).getAdminArea();
               String district =adres.get(0).getSubAdminArea();
-                cityName=country+" "+city+"/"+district+"\n"+"("+(float) lat+" - "+(float) log+")";
-               // getAirQuality(lat,log);
+                cityName="Turkey"+" "+"Konya"+"/"+"Karatay"+"\n"+"("+ " 37,871540"+" - "+ "32.498914"+")";
+
+
+                // getAirQuality(lat,log);
                 // city referans alınacak
 
             }

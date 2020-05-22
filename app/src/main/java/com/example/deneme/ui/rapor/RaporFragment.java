@@ -261,7 +261,7 @@ public class RaporFragment extends Fragment {
 
         if(bundle != null) {
             String adress = bundle.getString("key");
-            txtAdres.setText("deneme" + adress);
+            txtAdres.setText("Konya/Karatay");//deneme null--> adress
             txtAdres.setVisibility(View.VISIBLE);
         }
     }
@@ -331,8 +331,8 @@ public class RaporFragment extends Fragment {
             }
 
 
-            TextView resultText = (TextView) activity.findViewById(R.id.grpc_response_text);
-            resultText.setText(result);
+            //TextView resultText = (TextView) activity.findViewById(R.id.grpc_response_text);
+            //resultText.setText(result);
 
 
 /*
