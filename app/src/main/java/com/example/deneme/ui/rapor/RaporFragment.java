@@ -106,9 +106,14 @@ public class RaporFragment extends Fragment {
 
                 new GrpcTask(getActivity()).execute(
                         "10.0.2.2",
-
                         "",
-                        "50052"
+                        "50052",
+                        txtAdres.getText().toString(),
+                        etMail.getText().toString(),
+                        "//",
+                        etAd.getText().toString()
+
+
 
 
                 );
@@ -261,7 +266,7 @@ public class RaporFragment extends Fragment {
 
         if(bundle != null) {
             String adress = bundle.getString("key");
-            txtAdres.setText("Konya/Karatay");//deneme null--> adress
+            txtAdres.setText("ADRES"+adres);//deneme null--> adress
             txtAdres.setVisibility(View.VISIBLE);
         }
     }
@@ -296,13 +301,17 @@ public class RaporFragment extends Fragment {
             String host = params[0];
             String message = params[1];
             String portStr = params[2];
+            String adress = params[3];
+            String email = params[4];
+            String imageUrl = params[5];
+            String name = params[6];
             int port = TextUtils.isEmpty(portStr) ? 0 : Integer.valueOf(portStr);
             try {
                 channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
                 ComplaintServiceGrpc.ComplaintServiceBlockingStub stub = ComplaintServiceGrpc.newBlockingStub(channel);
-                newComplaint request = newComplaint.newBuilder().setAdress("client deneme123").setEmail("clientdeneme@hoymail.com")
-                        .setImageUrl("www.clientdeneme.com")
-                        .setName("mustafa taha soydan")
+                newComplaint request = newComplaint.newBuilder().setAdress(adress).setEmail(email)
+                        .setImageUrl(imageUrl)
+                        .setName(name)
 
                         .build();
                 result reply = stub.createComplaint(request);

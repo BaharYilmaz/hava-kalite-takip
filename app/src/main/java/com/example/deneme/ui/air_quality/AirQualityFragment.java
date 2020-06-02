@@ -130,25 +130,24 @@ public class AirQualityFragment extends Fragment implements LocationListener {
     public class GetData extends AsyncTask<Void, Void, String> {
         String ResponseMessage = "";
         String json;
-        String host;
+        String adres;
         String port;
         String message;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            host = "10.0.2.2";
-            port = "4242";
+            adres = "floating-journey-82816.herokuapp.com/airqualityindex";
             //
             //message = "airqualityindex/"+city;
-            message = "airqualityindex/konya";
+            message = "konya";
         }
 
         @Override
         protected String doInBackground(Void... params) {
             String ResponseCode="-1";
             JSONParser jParser = new JSONParser();
-            String FinalURL = "http://"+host+":"+port+"/"+message;
+            String FinalURL = "https://"+adres+"/"+message;
             Log.i("***", FinalURL);
             try {
                 json = jParser.getJSONFromUrl(FinalURL).getJSONObject("result").getString("aqi");
@@ -202,7 +201,8 @@ public class AirQualityFragment extends Fragment implements LocationListener {
               String country =adres.get(0).getCountryName();
                city =adres.get(0).getAdminArea();
               String district =adres.get(0).getSubAdminArea();
-                cityName="Turkey"+" "+"Konya"+"/"+"Karatay"+"\n"+"("+ " 37,871540"+" - "+ "32.498914"+")";
+                //cityName="Turkey"+" "+"Konya"+"/"+"Karatay"+"\n"+"("+ " 37,871540"+" - "+ "32.498914"+")";
+                cityName = country +"/"+district+"/"+"\n"+"("+lat+")"+"-"+log+")";
 
 
                 // getAirQuality(lat,log);

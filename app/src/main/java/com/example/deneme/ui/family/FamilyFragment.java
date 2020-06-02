@@ -112,7 +112,7 @@ public class FamilyFragment extends Fragment {
     public class GetData extends AsyncTask<String, Void, String> {
         String ResponseMessage = "";
         String json;
-        String host;
+       String adres = "https://floating-journey-82816.herokuapp.com/airqualityindex/";
         String port;
         String message;
 
@@ -120,7 +120,7 @@ public class FamilyFragment extends Fragment {
         protected String doInBackground(String... strings) {
             String ResponseCode="-1";
             JSONParser jParser = new JSONParser();
-            String FinalURL = "http://10.0.2.2:4242/airqualityindex/"+strings[0];
+            String FinalURL = adres+strings[0];
             Log.i("***", FinalURL);
             try {
                 json = jParser.getJSONFromUrl(FinalURL).getJSONObject("result").getString("aqi");
@@ -134,11 +134,11 @@ public class FamilyFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            host = "10.0.2.2";
-            port = "4242";
+         //   host = "10.0.2.2";
+           // port = "4242";
             //
             //message = "airqualityindex/"+city;
-            message = "airqualityindex/konya";
+            //message = "airqualityindex/konya";
         }
 
 
