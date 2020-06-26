@@ -109,7 +109,7 @@ tools:context=".ui.air_quality.AirQualityFragment">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="Sonuç burda gözükcek"
+                android:text="--"
                 android:textColor="@android:color/holo_blue_dark" />
         </LinearLayout>
 

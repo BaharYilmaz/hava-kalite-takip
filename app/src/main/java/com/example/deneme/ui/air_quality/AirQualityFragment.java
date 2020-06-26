@@ -160,7 +160,7 @@ public class AirQualityFragment extends Fragment implements LocationListener {
 
         @Override
         protected void onPostExecute(String result) {
-          txtHavaSonuc.setText("Bulundugunuz şehrin hava kalitesi " +json.toString());
+          txtHavaSonuc.setText("Bulundugunuz şehrin hava kalitesi : " +json.toString()+"AQ(iyi)");
         }
     }
 

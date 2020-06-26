@@ -32,11 +32,10 @@ function CreateComplaint(call,callback){
 }
 
 function main() {
-    mongoose.connect('mongodb+srv://mts:924884Pp@mts-gpqz8.gcp.mongodb.net/test?retryWrites=true&w=majority',
+    mongoose.connect('mongodb+srv://mts:PASSWORD@mts-gpqz8.gcp.mongodb.net/test?retryWrites=true&w=majority',
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
     var server = new grpc.Server();
-    console.log("girdi");
     server.addService(complaint_proto.ComplaintService.service,
         {
 
