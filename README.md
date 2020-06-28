@@ -1,7 +1,7 @@
 <h1 align="center">Hava Kalite Takip Uygulaması</h1>
 
 
-> Uygulama, kullanıcınun bulundupu konumdaki havanın kalitesini takip etmesini, hava kirliliğine neden olan durumları uygulama üzerinden yetkililere bildirmesini amaçlamaktadır. Uygulamaya aile üyeleri eklenebilmekte ve bu üyelerin bulundukları şehirlerdeki hava kalitesi takip edilebilmektedir.
+> Uygulama, kullanıcının bulunduğu konumdaki havanın kalitesini takip etmesini, hava kirliliğine neden olan durumları uygulama üzerinden yetkililere bildirmesini amaçlamaktadır. Uygulamaya aile üyeleri eklenebilmekte ve bu üyelerin bulundukları şehirlerdeki hava kalitesi takip edilebilmektedir.
 
 ## Kurulum gRPC Server Tarafı
 
