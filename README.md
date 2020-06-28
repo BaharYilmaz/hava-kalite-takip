@@ -3,16 +3,16 @@
 
 > Uygulama, kullanıcınun bulundupu konumdaki havanın kalitesini takip etmesini, hava kirliliğine neden olan durumları uygulama üzerinden yetkililere bildirmesini amaçlamaktadır. Uygulamaya aile üyeleri eklenebilmekte ve bu üyelerin bulundukları şehirlerdeki hava kalitesi takip edilebilmektedir.
 
-## Kurulum gRPC Server Side
+## Kurulum gRPC Server Tarafı
 
-From the `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Server/` directory:
+ `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Server/` Dizinie gidiniz:
 
- 1. Run the npm install:
+ 1. npm install Komutunu çalıştırınız:
 
     ```sh
     $ npm install
     ```
- 2. Run the npm install for gRPC package:
+ 2. npm install gRPC paketlerini yükleyiniz:
 
     ```sh
     $ npm i grpc    
@@ -20,21 +20,21 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Serve
     $ npm i @grpc/proto-loader
     ```
 
- 2. From another terminal, run the client:
+ 2. Bir başka terminalde gRPC server 'ı çalıştırınız:
 
     ```sh
     $ node server.js
     ```
-## Kurulum NodeJs Server Side
+## Kurulum NodeJs Server Tarafı
 
-From the `hava_kalite_takip/AirQualityApi/air-quality-api/` directory:
+`hava_kalite_takip/AirQualityApi/air-quality-api/` Dizinie gidiniz:
 
- 1. Run the npm install:
+ 1. npm install Komutunu çalıştırınız:
 
     ```sh
     $ npm install
     ```
- 2. From another terminal, run the client:
+ 2. Bir başka terminalde Server.js 'i çalıştırınız:
 
     ```sh
     $ node server.js
