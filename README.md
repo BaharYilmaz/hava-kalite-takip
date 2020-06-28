@@ -27,7 +27,7 @@
     ```
 ## Kurulum NodeJs Server Tarafı
 
-`hava_kalite_takip/AirQualityApi/air-quality-api/` Dizinie gidiniz:
+`hava_kalite_takip/AirQualityApi/air-quality-api/` Dizinine gidiniz:
 
  1. npm install Komutunu çalıştırınız:
 
