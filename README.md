@@ -3,16 +3,6 @@
 
 > Uygulama, kullanıcınun bulundupu konumdaki havanın kalitesini takip etmesini, hava kirliliğine neden olan durumları uygulama üzerinden yetkililere bildirmesini amaçlamaktadır. Uygulamaya aile üyeleri eklenebilmekte ve bu üyelerin bulundukları şehirlerdeki hava kalitesi takip edilebilmektedir.
 
-## Demo
-
-
-
-## Kurulum
-
-```
-yarn install
-
-```
 ## Kurulum gRPC Server Side
 
 From the `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Server/` directory:
@@ -49,9 +39,21 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/` directory:
     ```sh
     $ node server.js
     ```
-> Expected Output
 
-<img width="1679" alt="Test" src="https://user-images.githubusercontent.com/31216880/80509145-a88fbc00-8981-11ea-8c93-f01e773a7f20.png">
+## Ekran Görüntüleri
+
+> Hava kalite takip ekranları
+
+![c1](https://user-images.githubusercontent.com/48556212/85956815-0eec8700-b991-11ea-9de8-97db14aa1d8d.jpg)
+
+> Rapor/şikayet ekranları
+
+![c3(1)](https://user-images.githubusercontent.com/48556212/85956817-10b64a80-b991-11ea-8d64-1515a8d65cdc.jpg)
+
+> Aile üyesi ekleme ve hava takip ekranları
+
+![c2](https://user-images.githubusercontent.com/48556212/85956816-101db400-b991-11ea-92ca-e5f03e649f03.jpg)
+
 
 ## Kullanılan Teknolojiler
 
