@@ -44,15 +44,15 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/` directory:
 
 > Hava kalite takip ekranları
 
-![c1](https://user-images.githubusercontent.com/48556212/85956815-0eec8700-b991-11ea-9de8-97db14aa1d8d.jpg)
+![a](https://user-images.githubusercontent.com/48556212/85957313-0007d380-b995-11ea-97da-95ca32ca4e38.png)
 
 > Rapor/şikayet ekranları
 
-![c3(1)](https://user-images.githubusercontent.com/48556212/85956817-10b64a80-b991-11ea-8d64-1515a8d65cdc.jpg)
+![c](https://user-images.githubusercontent.com/48556212/85957316-039b5a80-b995-11ea-9667-7da1cff74725.png)
 
 > Aile üyesi ekleme ve hava takip ekranları
 
-![c2](https://user-images.githubusercontent.com/48556212/85956816-101db400-b991-11ea-92ca-e5f03e649f03.jpg)
+![b](https://user-images.githubusercontent.com/48556212/85957315-026a2d80-b995-11ea-9c7a-ecc74c617d93.jpg)
 
 
 ## Kullanılan Teknolojiler
