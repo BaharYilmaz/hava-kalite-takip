@@ -40,6 +40,19 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/` directory:
     $ node server.js
     ```
 
+
+
+## Kullanılan Teknolojiler
+
+* Google Maps Api
+* Air Quality Index Api
+* Android Studio 3.6
+* Java 1.8
+* Node.js 
+* MongoDB 
+* Firebase Cloud Storage
+* gRPC
+
 ## Ekran Görüntüleri
 
 > Hava kalite takip ekranları
@@ -53,16 +66,4 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/` directory:
 > Aile üyesi ekleme ve hava takip ekranları
 
 ![b](https://user-images.githubusercontent.com/48556212/85957315-026a2d80-b995-11ea-9c7a-ecc74c617d93.jpg)
-
-
-## Kullanılan Teknolojiler
-
-* Google Maps Api
-* Air Quality Index Api
-* Android Studio 3.6
-* Java 1.8
-* Node.js 
-* MongoDB 
-* Firebase Cloud Storage
-* gRPC
 
