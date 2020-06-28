@@ -22,13 +22,12 @@ From the `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Serve
     ```sh
     $ npm install
     ```
-    
-  2. Run the npm install for gRPC package:
+ 2. Run the npm install for gRPC package:
 
     ```sh
-    $ npm i grpc
+    $ npm i grpc    
+
     $ npm i @grpc/proto-loader
-    
     ```
 
  2. From another terminal, run the client:
