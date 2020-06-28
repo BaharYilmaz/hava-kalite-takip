@@ -5,7 +5,7 @@
 
 ## Kurulum gRPC Server Tarafı
 
- `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Server/` Dizinie gidiniz:
+ `hava_kalite_takip/AirQualityApi/air-quality-api/grpcServer/proto/Server/` Dizinine gidiniz:
 
  1. npm install Komutunu çalıştırınız:
 
